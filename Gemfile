@@ -46,6 +46,8 @@ group :development, :test do
   gem 'launchy'
   gem 'dotenv'
   gem 'dotenv-rails'
+  gem 'email_spec'
+  gem 'mailcatcher'
 end
 
 group :production do

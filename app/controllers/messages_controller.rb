@@ -7,6 +7,7 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(set_params)
     if @message.save
+      ForwardMessage.send_message(@message).deliver
       redirect_to root_path, notice:"Message successfully sent"
     else
       render :new

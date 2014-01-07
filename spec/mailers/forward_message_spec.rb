@@ -1,11 +1,11 @@
 require "spec_helper"
 
-describe MessageForwarded do
-  describe "message" do
-    let(:mail) { MessageForwarded.message }
+describe ForwardMessage do
+  describe "send_message" do
+    let(:mail) { ForwardMessage.send_message }
 
     it "renders the headers" do
-      mail.subject.should eq("Message")
+      mail.subject.should eq("Send message")
       mail.to.should eq(["to@example.org"])
       mail.from.should eq(["from@example.com"])
     end

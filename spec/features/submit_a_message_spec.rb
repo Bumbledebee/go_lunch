@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-feature 'submit contact form', %Q{
+feature 'submit contact form', %Q(
   As a site visitor
   I want to contact the owner of the site
   So that I can ask questions or make comments about the site
-} do
+) do
 
   # Acceptance Criteria:
 
@@ -24,6 +24,9 @@ feature 'submit contact form', %Q{
     expect(page).to have_content "Message successfully sent"
     expect(ActionMailer::Base.deliveries.size).to eql(1)
     last_email = ActionMailer::Base.deliveries.last
+    expect(last_email).to have_subject('Message from GoLunch Visitor')
+    expect(last_email).to deliver_to("debbieblass@web.de")
+    expect(last_email).to have_body_text("Nice Site!")
   end
 
   scenario 'user does not fill in all attributes' do
