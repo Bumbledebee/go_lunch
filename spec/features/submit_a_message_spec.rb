@@ -12,6 +12,8 @@ feature 'submit contact form', %Q{
   # *I must specify a message
 
   scenario 'user fills in page with valid attributes' do
+    #clear out emails
+    ActionMailer::Base.deliveries = []
     visit root_path
 
     click_link 'Contact Me'
@@ -20,6 +22,8 @@ feature 'submit contact form', %Q{
     click_on "Create Message"
 
     expect(page).to have_content "Message successfully sent"
+    expect(ActionMailer::Base.deliveries.size).to eql(1)
+    last_email = ActionMailer::Base.deliveries.last
   end
 
   scenario 'user does not fill in all attributes' do
