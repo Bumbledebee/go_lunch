@@ -15,7 +15,6 @@ feature 'submit contact form', %Q(
     #clear out emails
     ActionMailer::Base.deliveries = []
     visit root_path
-
     click_link 'Contact Me'
     fill_in "Email", with:"hello@gmail.com"
     fill_in "Message", with:"Nice Site!"
